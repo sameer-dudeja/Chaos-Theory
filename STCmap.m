@@ -1,8 +1,9 @@
 clear all ,close all,   clc
-xold = 0.5;
+
 xvals=[];
 for r=0:0.001:1
     r
+    xold = 0.5;
       for i=1:5000
         if(xold<0.5)         
             xnew = cos(pi*((r*sin(pi*xold))+(2*(1-r)*xold)-0.5));
