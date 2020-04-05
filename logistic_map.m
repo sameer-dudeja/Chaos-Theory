@@ -1,17 +1,17 @@
 clear all, close all, clc
 
 xvals=[];
-for beta =0:0.001:4
+for beta =0:0.01:1
     beta
     xold = 0.5;
     for i=1:2000
-        xnew = ((xold-xold^2)*beta);
+        xnew = cos(pi*(4*beta*xold*(1-xold)+((1-beta)*sin(pi*xold))-0.5));
         xold = xnew;
     end
 % xnew =xold;
     xss = xnew;
     for i=1:1:5000
-        xnew = ((xold-xold^2)*beta);
+        xnew = cos(pi*(4*beta*xold*(1-xold)+((1-beta)*sin(pi*xold))-0.5));
         xold=xnew;
         xvals(1,length(xvals)+1) = beta;
         xvals(2,length(xvals)) = xnew;

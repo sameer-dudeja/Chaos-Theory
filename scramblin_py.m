@@ -1,21 +1,15 @@
 clear all ,close all,   clc
-
-
 myStream=RandStream('dsfmt19937');
-Image=(imread('image.jpg'));
-[m,n,k]=size(Image);
+Image=(imread('image2.jpg'));
+[M,N,K]=size(Image);
+C = ones(M,N);
+m = M;
+n = N;
 l = min(floor(sqrt(m)),floor(sqrt(n)));
 L=l*l;
 X=ones(1,L);
 [xold,R] = keygen(myStream);
-for R=R:4*(L)
-    for i=1:4*L
-        xnew = cos(pi*((4*R*(xold)^2-4*R*xold)+((1-R)*sin(pi*xold))-0.5));
-        xold = xnew;
-        X(i) = xnew;
-    end
-end
-
+X = lsc_py;
 [A,IA] = sort(X(1:(L)));
 [B,IB] = sort(X(L+1:2*L));
 [Y,IY] = sort(X(2*L+1:3*L));
@@ -46,3 +40,26 @@ for i = 1:L
 end
 figure
 imshow(T);
+figure
+imshow(Image);
+% X = reshape(X,M,N);
+% imrotate(T,90);
+% [X_sort,XI] = sort(X);
+% for i = 1
+%     for j = 1
+%     C(XI(i,j),j)=    T(XI(i,j),j)+T(XI(M,N),N)+floor((2^32)*X(i,j));
+%     end
+% end
+
+% for i = 2:N
+%     for j = 1
+%     C(XI(i,j),j)=    T(XI(i,j),j)+C(XI(1-N,N),N)+floor((2^32)*X(i,j));
+%     end
+% end
+% for i = 1:N
+%     for j = 2:N
+%     C(XI(i,j),j)=    T(XI(i,j),j)+C(XI(i,j-1),j-1)+floor((2^32)*X(i,j));
+%     end
+% end
+% figure
+% imshow(C);
