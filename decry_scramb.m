@@ -1,0 +1,33 @@
+function [K] = decry_scramb(T,X)
+    [M,N,k]=size(T);
+    m = M;
+    n = N; 
+    l = min(floor(sqrt(m)),floor(sqrt(n)));
+    L=l*l;
+    [A,IA] = sort(X(1:(L)));                  %sorting by rows
+    [B,IB] = sort(X(L+1:2*L));
+    [Y,IY] = sort(X(2*L+1:3*L));
+    [Z,IZ] = sort(X(3*L+1:4*L)); 
+    O = [L,L];
+    Q = [L,L];
+        for j = 1:L
+            for i = 1:L
+                m = (mod((i+IB(j)-1),L))+1;
+                n = (mod((i+IZ(j)-1),L))+1;
+                O(i,j) = IA(m);
+                Q(i,j) = IY(n);
+            end
+        end
+    for i = 1:L
+                for j = 1:L
+                    a = O(i,j);
+                    b = Q(a,j);
+                    m1 = floor(((a-1)/l));
+                    n1 = mod((a-1),l);
+                    m2 = floor(((b-1)/l))+1;
+                    n2 = mod((b-1),l)+1;
+                    x = m1*l+m2;
+                    y = n1*l+n2;
+                    K(i,j) = T(x,y); 
+                end
+    end

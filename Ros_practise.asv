@@ -1,0 +1,17 @@
+clc
+% myStream=RandStream('dsfmt19937');
+img = rgb2gray(imread('im4.jpg'));
+X0 = 1.5823;
+P0 = 1.4824;
+[m,n,k]=size(img);
+l = min(floor(sqrt(m)),floor(sqrt(n)));
+L=l*l;
+X1 = lsc_py(L,X0,P0);
+C = uint8(ROS(img,X1,L));
+T = uint8(ROS_Decryp(C,X1,L)); 
+figure
+imshow(C);
+xlabel('Encrypted Image');
+figure
+imshow(T);
+xlabel('Decrypted Image');   
