@@ -1,35 +1,27 @@
-function K = LSC_Decryption(Key,E)
+function [X0,P0,K] = LSC_Decryption(Key,E)
 % zE = imread('encr.jpg');
   [m,n,k]=size(E);
     l = min(floor(sqrt(m)),floor(sqrt(n)));
     L=l*l;
-    for N = 1:4
+    for N = 4:-1:1
         if(N==1)
-                X0 = single(mod((Key(1)*Key(4)+Key(3)*Key(5)),1));
-                P0 = single(mod((Key(2)*Key(4)+Key(3)*Key(5)),1));
-                X0
-                P0
+                X0(N) = single(mod((Key(1)*Key(4)+Key(3)*Key(5)),1));
+                P0(N) = single(mod((Key(2)*Key(4)+Key(3)*Key(5)),1));
         end
         if(N==2)
-                X0 = single(mod((Key(1)*Key(4)+Key(3)*Key(6)),1));
-                P0 = single(mod((Key(2)*Key(4)+Key(3)*Key(6)),1));
-                X0
-                P0
+                X0(N) = single(mod((Key(1)*Key(4)+Key(3)*Key(6)),1));
+                P0(N) = single(mod((Key(2)*Key(4)+Key(3)*Key(6)),1));
         end
         if(N==3)
-                 X0 = single(mod((Key(1)*Key(4)+Key(3)*Key(7)),1));
-                 P0 = single(mod((Key(2)*Key(4)+Key(3)*Key(7)),1));
-                 X0
-                 P0
+                 X0(N) = single(mod((Key(1)*Key(4)+Key(3)*Key(7)),1));
+                 P0(N) = single(mod((Key(2)*Key(4)+Key(3)*Key(7)),1));
         end
         if(N==4)
-                 X0 = single(mod((Key(1)*Key(4)+Key(3)*Key(8)),1));
-                 P0 = single(mod((Key(2)*Key(4)+Key(3)*Key(8)),1));
-                 X0
-                 P0
+                 X0(N) = single(mod((Key(1)*Key(4)+Key(3)*Key(8)),1));
+                 P0(N) = single(mod((Key(2)*Key(4)+Key(3)*Key(8)),1));
         end
-         X = lsc_py(4*L,X0,P0);
-         X1 = lsc_py(L,X0,P0);
+%          X = lsc_py(4*L,X0,P0);
+%          X1 = lsc_py(L,X0,P0);
 %         if(k==3)
 %             red = E(:,:,1);
 %             green = E(:,:,2);
@@ -54,5 +46,5 @@ function K = LSC_Decryption(Key,E)
 %         end
         E = T;
     end
-    K = T;
+    K = E;
 end

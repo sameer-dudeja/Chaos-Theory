@@ -1,6 +1,6 @@
 % clc
 % myStream=RandStream('dsfmt19937');
-function [Key] = keygen(myStream,N)
+function [Key] = keygen(myStream)
 kkey = rand(myStream,1,256);
 x0 = 0;p0 = 0;d = 0;g = 0;h1 = 0;h2 = 0;h3 = 0;h4 = 0;
 x= zeros(1,256);

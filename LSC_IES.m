@@ -7,38 +7,34 @@ img = rgb2gray(imread('im4.jpg'));
 % just_blue = cat(3,a,a,blue);
 % recom = cat(3,red,green,blue);
 % imshow(recom);
-  [m,n,k]=size(img);
-    l = min(floor(sqrt(m)),floor(sqrt(n)));
-    L=l*l;
+[m,n,k]=size(img);
+l = min(floor(sqrt(m)),floor(sqrt(n)));
+L=l*l;
     II = img;
+    [Key] = keygen(myStream);
 for N= 1:4
-    [Key] = keygen(myStream,N);
+    
        if(N==1)
-                X0 = single(mod((Key(1)*Key(4)+Key(3)*Key(5)),1));
-                P0 = single(mod((Key(2)*Key(4)+Key(3)*Key(5)),1));
-                X0
-                P0
+                X0(N) = single(mod((Key(1)*Key(4)+Key(3)*Key(5)),1));
+                P0(N) = single(mod((Key(2)*Key(4)+Key(3)*Key(5)),1));
         end
         if(N==2)
-                X0 = single(mod((Key(1)*Key(4)+Key(3)*Key(6)),1));
-                P0 = single(mod((Key(2)*Key(4)+Key(3)*Key(6)),1));
-                X0
-                P0
+                X0(N) = single(mod((Key(1)*Key(4)+Key(3)*Key(6)),1));
+                P0(N) = single(mod((Key(2)*Key(4)+Key(3)*Key(6)),1));
+                
         end
         if(N==3)
-                 X0 = single(mod((Key(1)*Key(4)+Key(3)*Key(7)),1));
-                 P0 = single(mod((Key(2)*Key(4)+Key(3)*Key(7)),1));
-                 X0
-                 P0
+                 X0(N) = single(mod((Key(1)*Key(4)+Key(3)*Key(7)),1));
+                 P0(N) = single(mod((Key(2)*Key(4)+Key(3)*Key(7)),1));
+          
         end
         if(N==4)
-                 X0 = single(mod((Key(1)*Key(4)+Key(3)*Key(8)),1));
-                 P0 = single(mod((Key(2)*Key(4)+Key(3)*Key(8)),1));
-                 X0
-                 P0
+                 X0(N) = single(mod((Key(1)*Key(4)+Key(3)*Key(8)),1));
+                 P0(N) = single(mod((Key(2)*Key(4)+Key(3)*Key(8)),1));
+          
         end
-     X = lsc_py(4*L,X0,P0);
-     X1 = lsc_py(L,X0,P0);
+%      X = lsc_py(4*L,X0,P0);
+%      X1 = lsc_py(L,X0,P0);
 %     if(size(img,3)==3)
 %             red = img(:,:,1);
 %             green = img(:,:,2);
@@ -53,24 +49,23 @@ for N= 1:4
 %             C3 = uint8(ROS(T3,X1,L));
 %             C = cat(3,C1,C2,C3);
 %             
-%     else
+% %     else
         T = scrambling(II,X);
         imrotate(T,90);
         C = (ROS(T,X1,L));
-%     end
+% %     end
     II = C;
 end
-
 figure
 imshow(II);
 xlabel('Encrypted Image');
-% figure
-% imshow(P);
-% xlabel('Orignal Image');
+figure
+imshow(img);
+xlabel('Orignal Image');
 % % imwrite(C,'encr.jpg');
 % figure
 % imshow('encr.jpg');
-K = LSC_Decryption(Key,II);
+[x1,p1,K] = LSC_Decryption(Key,img);
 figure
 imshow(K);
 xlabel('Decrypted');
