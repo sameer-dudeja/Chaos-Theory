@@ -15,10 +15,11 @@ z = np.linspace(0.0,1.0,n2-n1)
 # logistic map is f(x) = mu*x*(1-x)  with mu in (0,4)
 def hua_stc(x,mu):
    # y = 4*mu*x*(1.0-x)
-   if x < 0.5:
-    y=math.cos(3.14*(mu*math.sin(3.14*x)+2*(1-mu)*x-0.5))
-   else:
-        y=math.cos(3.14*(mu*math.sin(3.14*x)+2*(1-mu)*(1-x)-0.5)) 
+   y=math.cos(3.14*(4*mu*x*(1-x)+(1-mu)*math.sin(3.14*x)-0.5));
+  # if x < 0.5:
+   # y=math.cos(3.14*(mu*math.sin(3.14*x)+2*(1-mu)*x-0.5))
+   #else:
+    #    y=math.cos(3.14*(mu*math.sin(3.14*x)+2*(1-mu)*(1-x)-0.5)) 
         
    return y 
 

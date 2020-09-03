@@ -1,0 +1,1 @@
+lyapExp = lyapunovExponent(X,fs);

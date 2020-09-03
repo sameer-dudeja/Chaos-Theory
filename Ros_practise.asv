@@ -1,6 +1,6 @@
 clc
 % myStream=RandStream('dsfmt19937');
-img = rgb2gray(imread('im4.jpg'));
+img = rgb2gray(imread('im.jpg'));
 A = im2double(img);
 X0 = 0.6515;
 P0 = 0.4647;  
@@ -9,11 +9,9 @@ P0 = 0.4647;
 l = min(floor(sqrt(m)),floor(sqrt(n)));
 L=l*l;
 X1 = lsc_py(L,X0,P0);
-X1= uint8(X1);
 X = lsc_py(4*L,X0,P0);
-X= uint8(X);
 % for i =1:1
-    P = scrambling(A,X);
+    P = scrambling(img,X);
 %     img = imrotate(img,90);
 %     img  = uint8(img);
     figure 

@@ -13,7 +13,7 @@ l = min(round(sqrt(m)),round(sqrt(n)));
 L=l*l;
 I = img;
 [Key] = keygen(myStream);
-for N = 1:4
+for N = 1:1
        if(N==1)
                 X0(N) = single(mod((Key(1)*Key(4)+Key(3)*Key(5)),1));
                 P0(N) = single(mod((Key(2)*Key(4)+Key(3)*Key(5)),1));
@@ -38,7 +38,7 @@ for N = 1:4
                  X0
                  P0   
        end
-     X = lsc_py(4*L,X0(N),P0(N));
+     X = lsc_py(4*L,X0(N),P0(N)); 
      X1 = lsc_py(L,X0(N),P0(N));
                                     %     if(size(img,3)==3)
                                     %             red = img(:,:,1);

@@ -5,14 +5,14 @@ for r=0:0.001:1
     r
     xold = 0.5;
       for i=1:5000
-        xnew = r * 4 *xold *(1-xold);
+        xnew = cos(pi*((4*r*(xold)^2-4*r*xold)+((1-r)*sin(pi*xold))-0.5));
         xold = xnew;
       end
 %       xnew=xold;
       xss=xnew;
     for i=0:1:5000
         %%xnew = cos(pi*((4*r*(xold)^2-4*r*xold)+((1-r)*sin(pi*xold))-0.5));
-        xnew = r * 4 *xold *(1-xold);
+        xnew = mu * 4 *x *(1-xold);
         xold = xnew;
         xvals(1,length(xvals)+1) = r;
         xvals(2,length(xvals)) = xnew;
